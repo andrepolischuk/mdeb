@@ -1,0 +1,30 @@
+{
+  "name": "mdeb",
+  "version": "0.0.0",
+  "description": "Minimal Debian packaging",
+  "bin": {
+    "mdeb": "mdeb.sh"
+  },
+  "files": [
+    "mdeb.sh"
+  ],
+  "scripts": {
+    "test": "./test.sh"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andrepolischuk/mdeb.git"
+  },
+  "keywords": [
+    "debian",
+    "ubuntu",
+    "deb",
+    "package"
+  ],
+  "author": "Andrey Polischuk <andre.polischuk@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/andrepolischuk/mdeb/issues"
+  },
+  "homepage": "https://github.com/andrepolischuk/mdeb#readme"
+}
