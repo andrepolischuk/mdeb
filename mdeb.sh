@@ -49,7 +49,8 @@ package_version="$(jq -r '.version' package.json)"
 package_description="$(jq -r '.description' package.json)"
 package_maintainer="$(jq -r '.author' package.json)"
 package_path='/usr/share'
-package_files=()
+
+declare -a package_files
 
 while [ -n "$1" ]; do
   param="$1"
@@ -64,7 +65,7 @@ while [ -n "$1" ]; do
       shift
       ;;
     *)
-      package_files=("${package_files[@]}" "$param")
+      package_files[${#package_files[@]}]="$param"
   esac
   shift
 done
@@ -74,6 +75,7 @@ if [ -z "$package_files" ]; then
 fi
 
 for file in "${package_files[@]}"; do
+  echo "$file"
   if ! [ -e "$file" ]; then
     error "File does not exist: $file"
   fi

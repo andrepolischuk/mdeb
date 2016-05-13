@@ -18,21 +18,21 @@ failures=0
 
 empty_args_test="$(./mdeb.sh)"
 
-if [[ $empty_args_test != *'must specify at least one file'* ]]; then
+if [[ "$empty_args_test" != *'must specify at least one file'* ]]; then
   error 'Empty arguments test failed'
   : $((failures++))
 fi
 
 empty_files_test="$(./mdeb.sh --path /usr/local)"
 
-if [[ $empty_files_test != *'must specify at least one file'* ]]; then
+if [[ "$empty_files_test" != *'must specify at least one file'* ]]; then
   error 'Empty files test failed'
   : $((failures++))
 fi
 
 wrong_file_test="$(./mdeb.sh package.json foo.js --path /usr/local)"
 
-if [[ $wrong_file_test != *'File does not exist: foo.js'* ]]; then
+if [[ "$wrong_file_test" != *'File does not exist: foo.js'* ]]; then
   error 'Wrong file test failed'
   : $((failures++))
 fi
