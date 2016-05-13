@@ -47,7 +47,7 @@ while [ -n "$1" ]; do
       exit 0
       ;;
     -p | --path)
-      package_path="$(cd "$value"; pwd)"
+      package_path="$value"
       shift
       ;;
     *)
