@@ -9,7 +9,8 @@
     "mdeb.sh"
   ],
   "scripts": {
-    "test": "./test.sh"
+    "test": "./test.sh",
+    "postpublish": "git push --follow-tags"
   },
   "repository": {
     "type": "git",
