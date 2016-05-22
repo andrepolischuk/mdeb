@@ -1,5 +1,5 @@
 language: bash
 before_install:
   - sudo apt-get update -qq
-  - sudo apt-get install -qq dpkg jq
+  - sudo apt-get install -y dpkg jq
 script: ./test.sh
