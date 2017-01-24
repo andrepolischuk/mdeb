@@ -19,22 +19,6 @@ fail() {
   exit 1
 }
 
-if ! hash dpkg jq 2>/dev/null ; then
-  echo "Enter your password to install dependencies"
-  sudo -v
-  if [ `uname` == 'Darwin' ]; then
-    brew install dpkg jq
-  elif [ `uname` == 'Linux' ]; then
-    sudo apt-get install dpkg jq
-  else
-    fail "dpkg and jq is required"
-  fi
-fi
-
-package_name="$(jq -r '.name' package.json)"
-package_version="$(jq -r '.version' package.json)"
-package_description="$(jq -r '.description' package.json)"
-package_maintainer="$(jq -r '.author' package.json)"
 package_path='/usr/share'
 package_files=()
 
@@ -55,6 +39,23 @@ while [ -n "$1" ]; do
   esac
   shift
 done
+
+if ! hash dpkg jq 2>/dev/null ; then
+  echo "Enter your password to install dependencies"
+  sudo -v
+  if [ `uname` == 'Darwin' ]; then
+    brew install dpkg jq
+  elif [ `uname` == 'Linux' ]; then
+    sudo apt-get install dpkg jq
+  else
+    fail "dpkg and jq is required"
+  fi
+fi
+
+package_name="$(jq -r '.name' package.json)"
+package_version="$(jq -r '.version' package.json)"
+package_description="$(jq -r '.description' package.json)"
+package_maintainer="$(jq -r '.author' package.json)"
 
 if [ -z "$package_files" ]; then
   fail 'You must specify at least one file or directory to add to the Debian package'
